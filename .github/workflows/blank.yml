@@ -166,4 +166,4 @@ jobs:
   call-workflow-2-in-local-repo:
     with:
       config-path: jnm
-    uses: ./.github/workflows/workflow-1.yml
+    uses: ./.github/workflows/workflow-1.yaml
