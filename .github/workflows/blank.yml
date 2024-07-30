@@ -164,6 +164,7 @@ jobs:
           echo test, and deploy your project.
 
   call-workflow-2-in-local-repo:
+    needs: terraform_apply
     with:
       config-path: jnm
     uses: ./.github/workflows/workflow-1.yaml
