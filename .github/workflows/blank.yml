@@ -167,4 +167,5 @@ jobs:
     with:
       config-path: jnm
     uses: ./.github/workflows/workflow-1.yaml
-    secrets: inherit
+    secrets:
+      token: bloah
