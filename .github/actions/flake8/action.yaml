@@ -9,13 +9,13 @@ runs:
   using: "composite"
   steps:
     - name: Setup Python
-      uses: 'actions/setup-python@v1'
+      uses: 'actions/setup-python@v2'
       with:
-        python-version: 3.8
+        python-version: '3.8'
         architecture: x64
+
     - name: 'Install flake8'
       run: pip install flake8
+      
     - name: 'Run flake8'
-      uses: TrueBrain/actions-flake8@v2
-      with:
-        path: ${{ inputs.directory }}
+      run: flake8 ${{ inputs.directory-to-check }}
