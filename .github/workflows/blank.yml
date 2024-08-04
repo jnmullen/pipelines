@@ -14,16 +14,10 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-
-  # flake8_backend:
-
-  # flake8_lambda:
-
   flake8_backend:
     runs-on: ubuntu-latest
     name: Runs flake8 for specific directory
     steps:
-      - uses: actions/checkout@v4
       - id: flake8_backend
         uses: ./.github/actions/flake8.yaml
         with:
