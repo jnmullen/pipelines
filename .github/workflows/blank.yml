@@ -24,3 +24,25 @@ jobs:
         uses: ./.github/actions/flake8
         with:
           directory-to-check: 'backend'
+
+  flake8_containers:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Run flake8 for backend
+        uses: ./.github/actions/flake8
+        with:
+          directory-to-check: 'containers'
+
+  flake8_lambda:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Run flake8 for backend
+        uses: ./.github/actions/flake8
+        with:
+          directory-to-check: 'lambda'
