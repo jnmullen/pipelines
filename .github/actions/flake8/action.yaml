@@ -16,7 +16,6 @@ runs:
     - name: 'Install flake8'
       run: pip install flake8
     - name: 'Run flake8'
-      uses: suo/flake8-github-action@releases/v1
-      working-directory: ${{ inputs.directory }}
+      uses: TrueBrain/actions-flake8@v2
       with:
-        checkName: 'flake8_py3'
+        path: ${{ inputs.directory }}
