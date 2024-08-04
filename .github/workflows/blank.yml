@@ -30,7 +30,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v2
 
-      - name: Run flake8 for backend
+      - name: Run pytest for backend
         uses: ./.github/actions/pytest
         with:
           directory-to-check: 'backend'

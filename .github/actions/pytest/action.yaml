@@ -14,6 +14,10 @@ runs:
         python-version: '3.8'
         architecture: x64
 
+    - name: Install pytest
+      run: pip install pytest
+      shell: bash
+
     - name: 'Run pytest'
       run: pytest ${{ inputs.directory-to-check }}/
       shell: bash
