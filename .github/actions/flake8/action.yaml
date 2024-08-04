@@ -1,7 +1,7 @@
 name: 'Flake8'
 description: 'Run Flake8'
 inputs:
-  directory:  # id of input
+  directory-to-check:  # id of input
     description: 'Which directory to run flake8 in'
     required: true
     
@@ -9,18 +9,14 @@ runs:
   using: "composite"
   steps:
     - name: Setup Python
-      working-directory: ${{ inputs.directory }}
-      uses: actions/setup-python@v1
+      uses: 'actions/setup-python@v1'
       with:
         python-version: 3.8
         architecture: x64
-    - name: Install flake8
-      working-directory: ${{ inputs.directory }}
+    - name: 'Install flake8'
       run: pip install flake8
-    - name: Run flake8
-      working-directory: ${{ inputs.directory }}
+    - name: 'Run flake8'
       uses: suo/flake8-github-action@releases/v1
+      working-directory: ${{ inputs.directory }}
       with:
-        checkName: 'flake8_py3'   # NOTE: this needs to be the same as the job name
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        checkName: 'flake8_py3'

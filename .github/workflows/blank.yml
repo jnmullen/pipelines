@@ -17,7 +17,8 @@ jobs:
   flake8_backend:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repo
+        uses: actions/checkout@v4
       - name: Run flake8 for backend
         uses: ./.github/actions/flake8
         with:
