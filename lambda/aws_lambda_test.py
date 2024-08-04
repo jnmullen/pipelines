@@ -1,4 +1,4 @@
-import aws_lambda 
+import aws_lambda
 
 
 def test_capital_case():
