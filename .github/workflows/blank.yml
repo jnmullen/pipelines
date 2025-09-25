@@ -28,7 +28,7 @@ jobs:
           domain_owner_account_id: "4567"
     steps:
       - name: ECHO OUTPUT
-        run: echo "${matrix.environment} ${matrix.domain_owner_account_id}"
+        run: echo "${{ matrix.environment }} ${{ matrix.domain_owner_account_id} }"
           
           
   # flake8_backend:
