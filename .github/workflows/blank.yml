@@ -14,85 +14,102 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  flake8_backend:
-    runs-on: ubuntu-latest
+
+  lambda_packaging:
+    name: "Lambda Packaging"
+    runs-on: ubuntu-24.04
+    strategy:
+      matrix:
+        environment: ["Dev", "Prd"]
+        include:
+        - environment: "Dev"
+          domain_owner_account_id: "1234"
+        - environment: "Prd"
+          domain_owner_account_id: "4567"
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
+      - name: ECHO OUTPUT
+        run: echo "${matrix.environment} ${matrix.domain_owner_account_id}"
+          
+          
+  # flake8_backend:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout repo
+  #       uses: actions/checkout@v2
 
-      - name: Run flake8 for backend
-        uses: ./.github/actions/flake8
-        with:
-          directory-to-check: 'backend'
-  pytest_backend:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
+  #     - name: Run flake8 for backend
+  #       uses: ./.github/actions/flake8
+  #       with:
+  #         directory-to-check: 'backend'
+  # pytest_backend:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout repo
+  #       uses: actions/checkout@v2
 
-      - name: Run pytest for backend
-        uses: ./.github/actions/pytest
-        with:
-          directory-to-check: 'backend'
+  #     - name: Run pytest for backend
+  #       uses: ./.github/actions/pytest
+  #       with:
+  #         directory-to-check: 'backend'
 
-  flake8_containers:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
+  # flake8_containers:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout repo
+  #       uses: actions/checkout@v2
 
-      - name: Run flake8 for backend
-        uses: ./.github/actions/flake8
-        with:
-          directory-to-check: 'containers'
-  pytest_containers:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
+  #     - name: Run flake8 for backend
+  #       uses: ./.github/actions/flake8
+  #       with:
+  #         directory-to-check: 'containers'
+  # pytest_containers:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout repo
+  #       uses: actions/checkout@v2
 
-      - name: Run pytest for backend
-        uses: ./.github/actions/pytest
-        with:
-          directory-to-check: 'containers'
+  #     - name: Run pytest for backend
+  #       uses: ./.github/actions/pytest
+  #       with:
+  #         directory-to-check: 'containers'
 
-  flake8_lambda:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
+  # flake8_lambda:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout repo
+  #       uses: actions/checkout@v2
 
-      - name: Run flake8 for backend
-        uses: ./.github/actions/flake8
-        with:
-          directory-to-check: 'lambda'
-  pytest_lambda:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
+  #     - name: Run flake8 for backend
+  #       uses: ./.github/actions/flake8
+  #       with:
+  #         directory-to-check: 'lambda'
+  # pytest_lambda:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout repo
+  #       uses: actions/checkout@v2
 
-      - name: Run pytest for backend
-        uses: ./.github/actions/pytest
-        with:
-          directory-to-check: 'lambda'
+  #     - name: Run pytest for backend
+  #       uses: ./.github/actions/pytest
+  #       with:
+  #         directory-to-check: 'lambda'
 
 
-  build_backend:
-    runs-on: ubuntu-latest
-    needs: [flake8_backend, pytest_backend]
-    steps:
-      - name: Build Backend
-        run: echo 'Build Backend'
-  build_lambda:
-    runs-on: ubuntu-latest
-    needs: [flake8_lambda, pytest_lambda]
-    steps:
-      - name: Build Backend
-        run: echo 'Build Backend'
-  build_containers:
-    runs-on: ubuntu-latest
-    needs: [flake8_containers, pytest_containers]
-    steps:
-      - name: Build Backend
-        run: echo 'Build Backend'
+  # build_backend:
+  #   runs-on: ubuntu-latest
+  #   needs: [flake8_backend, pytest_backend]
+  #   steps:
+  #     - name: Build Backend
+  #       run: echo 'Build Backend'
+  # build_lambda:
+  #   runs-on: ubuntu-latest
+  #   needs: [flake8_lambda, pytest_lambda]
+  #   steps:
+  #     - name: Build Backend
+  #       run: echo 'Build Backend'
+  # build_containers:
+  #   runs-on: ubuntu-latest
+  #   needs: [flake8_containers, pytest_containers]
+  #   steps:
+  #     - name: Build Backend
+  #       run: echo 'Build Backend'
